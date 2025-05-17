@@ -35,6 +35,7 @@ yarn-error.log*
 
 # Ignore Prisma generated client from ESLint
 lib/generated/prisma/**
+lib/generated/prisma/
 
 
 # vercel
