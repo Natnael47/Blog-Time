@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Ignore Prisma generated client from ESLint
+lib/generated/prisma/**
+
+
 # vercel
 .vercel
 
