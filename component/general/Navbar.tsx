@@ -49,7 +49,9 @@ export async function Navbar() {
         {user ? (
           <div className="flex items-center gap-4">
             <p>{user.given_name}</p>
-            <LogoutLink className={buttonVariants()}>LogOut</LogoutLink>
+            <LogoutLink postLogoutRedirectURL="/" className={buttonVariants()}>
+              LogOut
+            </LogoutLink>
           </div>
         ) : (
           <div className="flex items-center gap-4">
