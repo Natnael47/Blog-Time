@@ -5,7 +5,6 @@ import Link from "next/link";
 import { prisma } from "../utils/db";
 
 async function getData(userId: string) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const data = prisma.blogPost.findMany({
     where: {
       authorId: userId,
