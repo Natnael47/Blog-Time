@@ -1,4 +1,4 @@
-import { BlogPostCard } from "@/component/general/BlogPostCard";
+import { BlogPostCardEdit } from "@/component/general/BlogPostCardEdit";
 import { buttonVariants } from "@/components/ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
@@ -33,7 +33,7 @@ export default async function dashboardRoute() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data.map((item) => (
-          <BlogPostCard data={item} key={item.id} />
+          <BlogPostCardEdit data={item} key={item.id} />
         ))}
       </div>
     </div>

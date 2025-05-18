@@ -20,14 +20,17 @@ async function getData(id: string) {
 
 type Params = Promise<{ id: string }>;
 
-export default async function IdPage({ params }: { params: Params }) {
+export default async function MyPage({ params }: { params: Params }) {
   const { id } = await params;
 
   const data = await getData(id);
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
-      <Link className={buttonVariants({ variant: "destructive" })} href={"/"}>
+      <Link
+        className={buttonVariants({ variant: "destructive" })}
+        href={"/dashboard"}
+      >
         Back
       </Link>
 
