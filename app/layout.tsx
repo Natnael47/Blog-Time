@@ -1,5 +1,5 @@
 import { AuthProvider } from "@/component/general/AuthProvider";
-import { Navbar } from "@/component/general/Navbar";
+import Navbar2 from "@/component/general/NavBar2";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -30,7 +30,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}
         >
-          <Navbar />
+          <Navbar2 />
           {children}
         </body>
       </html>
