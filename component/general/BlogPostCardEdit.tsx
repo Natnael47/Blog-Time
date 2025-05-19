@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -39,7 +40,7 @@ export function BlogPostCardEdit({ data }: IappProps) {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button className="bg-blue-600 rounded-lg">
+                    <Button className="bg-blue-600 rounded-lg shadow-xl">
                       <Pencil size={36} />
                     </Button>
                   </TooltipTrigger>
@@ -60,14 +61,10 @@ export function BlogPostCardEdit({ data }: IappProps) {
           </p>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="relative size-8 overflow-hidden rounded-full">
-                <Image
-                  src={data.authorImage}
-                  alt={data.authorName}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Avatar className="relative size-8 overflow-hidden">
+                <AvatarImage src={data.authorImage} alt={data.authorName} />
+                <AvatarFallback>AV</AvatarFallback>
+              </Avatar>
               <p className="text-sm font-medium text-gray-700">
                 {data.authorName}
               </p>

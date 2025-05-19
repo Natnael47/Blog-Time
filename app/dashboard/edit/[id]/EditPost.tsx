@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
-import { useRef, useState, useTransition } from "react";
+import { useRef, useTransition } from "react";
 import { toast } from "sonner";
 
 import { handleDeleteSubmission, handleUpdateSubmission } from "@/app/action";
@@ -33,8 +33,6 @@ export default function EditPost({ data }: { data: any }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isPendingDelete, startTransitionDelete] = useTransition();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
