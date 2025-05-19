@@ -7,7 +7,18 @@ import { redirect, useRouter } from "next/navigation";
 import { useRef, useTransition } from "react";
 import { toast } from "sonner";
 
-import { handleUpdateSubmission } from "@/app/action";
+import { handleDeleteSubmission, handleUpdateSubmission } from "@/app/action";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -52,6 +63,26 @@ export default function EditPost({ data }: { data: any }) {
     });
   };
 
+  const handleDeleteConfirmed = () => {
+    startTransition(async () => {
+      const res = await handleDeleteSubmission(data.id);
+
+      toast(res.message, {
+        description: new Date().toLocaleString(),
+        action: res.success
+          ? undefined
+          : {
+              label: "Retry",
+              onClick: handleDeleteConfirmed,
+            },
+      });
+
+      if (res.success) {
+        redirect("/dashboard");
+      }
+    });
+  };
+
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
       <ResizablePanelGroup
@@ -89,9 +120,37 @@ export default function EditPost({ data }: { data: any }) {
                 >
                   {isPending ? "Saving..." : "Save Changes"}
                 </Button>
-                <Button className="w-full" variant="destructive">
-                  Delete Post
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      className="w-full"
+                      variant="destructive"
+                      disabled={isPending}
+                    >
+                      Delete Post
+                    </Button>
+                  </AlertDialogTrigger>
+
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete this post.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleDeleteConfirmed}>
+                        Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+
                 <Link href="/dashboard">
                   <Button className="w-full">Cancel</Button>
                 </Link>
