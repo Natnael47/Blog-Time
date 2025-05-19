@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/component/general/AuthProvider";
 import Navbar2 from "@/component/general/NavBar2";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
         >
           <Navbar2 />
           {children}
+          <Toaster />
         </body>
       </html>
     </AuthProvider>

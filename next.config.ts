@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
         port: "",
       },
       {
+        hostname: "static1.howtogeekimages.com",
+        protocol: "https",
+        port: "",
+      },
+      {
+        hostname: "www.logogenie.com",
+        protocol: "https",
+        port: "",
+      },
+      {
         protocol: "https",
         hostname: "assets.aceternity.com", // ✅ added correctly
       },
