@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
-import { useRef, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 
 import { handleDeleteSubmission, handleUpdateSubmission } from "@/app/action";
@@ -32,6 +32,9 @@ import { Textarea } from "@/components/ui/textarea";
 export default function EditPost({ data }: { data: any }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [isPendingDelete, startTransitionDelete] = useTransition();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -64,7 +67,7 @@ export default function EditPost({ data }: { data: any }) {
   };
 
   const handleDeleteConfirmed = () => {
-    startTransition(async () => {
+    startTransitionDelete(async () => {
       const res = await handleDeleteSubmission(data.id);
 
       toast(res.message, {
@@ -120,14 +123,15 @@ export default function EditPost({ data }: { data: any }) {
                 >
                   {isPending ? "Saving..." : "Save Changes"}
                 </Button>
+
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button
                       className="w-full"
                       variant="destructive"
-                      disabled={isPending}
+                      disabled={isPendingDelete}
                     >
-                      Delete Post
+                      {isPendingDelete ? "Deleting..." : "Delete Post"}
                     </Button>
                   </AlertDialogTrigger>
 
