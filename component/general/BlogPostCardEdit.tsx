@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -26,6 +27,11 @@ export function BlogPostCardEdit({ data }: IappProps) {
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
+          <div className="relative p-2 m-2">
+            <Link href={`/dashboard/edit/${data.id}`}>
+              <Button className="bg-blue-600 rounded-lg">Edit</Button>
+            </Link>
+          </div>
         </div>
         <div className="p-4">
           <h3 className="mb-2 text-lg font-semibold text-gray-900">
