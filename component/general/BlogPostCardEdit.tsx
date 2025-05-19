@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,7 +36,18 @@ export function BlogPostCardEdit({ data }: IappProps) {
           />
           <div className="relative p-2 m-2">
             <Link href={`/dashboard/edit/${data.id}`}>
-              <Button className="bg-blue-600 rounded-lg">Edit</Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button className="bg-blue-600 rounded-lg">
+                      <Pencil size={36} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Edit Post</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </Link>
           </div>
         </div>
