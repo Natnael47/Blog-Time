@@ -47,7 +47,7 @@ export default function EditPost({ data }: { data: any }) {
     startTransition(async () => {
       const res = await handleUpdateSubmission(formData, data.id);
 
-      toast(res.message, {
+      toast.success(res.message, {
         description: new Date().toLocaleString(),
         action: res.success
           ? undefined
@@ -68,7 +68,7 @@ export default function EditPost({ data }: { data: any }) {
     startTransitionDelete(async () => {
       const res = await handleDeleteSubmission(data.id);
 
-      toast(res.message, {
+      toast.success(res.message, {
         description: new Date().toLocaleString(),
         action: res.success
           ? undefined
