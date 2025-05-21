@@ -2,8 +2,6 @@ import { BlogPostCardEdit } from "@/component/general/BlogPostCardEdit";
 import { buttonVariants } from "@/components/ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
-import { Suspense } from "react";
-import { BlogPostCardSkeleton } from "../BlogPostCardSkeleton";
 import { prisma } from "../utils/db";
 
 async function getData(userId: string) {
@@ -25,21 +23,19 @@ export default async function dashboardRoute() {
   const data = await getData(user?.id as string);
 
   return (
-    <Suspense fallback={<BlogPostCardSkeleton />}>
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-medium">Your Blog Articles</h2>
-          <Link className={buttonVariants()} href={"/dashboard/create"}>
-            Create Post
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.map((item) => (
-            <BlogPostCardEdit data={item} key={item.id} />
-          ))}
-        </div>
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-medium">Your Blog Articles</h2>
+        <Link className={buttonVariants()} href={"/dashboard/create"}>
+          Create Post
+        </Link>
       </div>
-    </Suspense>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {data.map((item) => (
+          <BlogPostCardEdit data={item} key={item.id} />
+        ))}
+      </div>
+    </div>
   );
 }
